@@ -103,3 +103,40 @@ If you have go installed on the Raspberry Pi:
 ```bash
 go run ./deviceCounter.go
 ```
+
+### Run the program as a service
+
+Build the program
+
+```bash
+go build deviceCounter.go
+```
+
+create a service in `/etc/systemd/system/device-counter.service`
+
+```INI
+[Unit]
+Description=Device Counter
+After=network.target kismet.service
+Requires=kismet.service
+
+[Service]
+Type=simple
+User=pi
+ExecStart=/path/to/deviceCounter
+WorkingDirectory=/path/to/working/dir
+Restart=always
+RestartSec=5
+EnvironmentFile=/path/to/working/dir/.env
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Start the service
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable device-counter
+sudo systemctl start device-counter
+```
