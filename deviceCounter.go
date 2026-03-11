@@ -40,7 +40,7 @@ func countWifiClients(host string, username string, password string, periodSec i
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		return 0, fmt.Errorf("API returned status: %s", resp.Status)
+		return 0, fmt.Errorf("Kismet API returned status: %s", resp.Status)
 	}
 
 	var devices []Device

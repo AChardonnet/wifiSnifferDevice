@@ -95,3 +95,11 @@ Check the service :
 ```bash
 sudo systemctl status kismet
 ```
+
+## Usage
+
+If you have go installed on the Raspberry Pi:
+
+```bash
+go run ./deviceCounter.go
+```
